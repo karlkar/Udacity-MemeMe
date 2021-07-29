@@ -1,24 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LUS-gf-nYa">
+                                <rect key="frame" x="10" y="94" width="394" height="508"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUi-Ap-SIr">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem title="Pick" id="p3Y-2S-IBs">
+                                        <connections>
+                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="nHs-oU-zNy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Camera" id="VBE-Ts-VY5">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="c4J-CX-5TS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="st9-T5-Ef5">
+                                <rect key="frame" x="10" y="94" width="394" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pn6-xz-CKF">
+                                <rect key="frame" x="10" y="568" width="394" height="34"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg8-7Q-cfD">
+                                <rect key="frame" x="10" y="44" width="19" height="22"/>
+                                <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                <connections>
+                                    <action selector="shareButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eQ8-DI-R0e"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LUS-gf-nYa" secondAttribute="trailing" constant="10" id="7Vf-PA-PxZ"/>
+                            <constraint firstItem="LUS-gf-nYa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="9Wt-8r-Xgr"/>
+                            <constraint firstItem="OUi-Ap-SIr" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Btq-hI-kIJ"/>
+                            <constraint firstItem="st9-T5-Ef5" firstAttribute="centerX" secondItem="LUS-gf-nYa" secondAttribute="centerX" id="E49-kM-EJf"/>
+                            <constraint firstItem="OUi-Ap-SIr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Jug-zn-pxx"/>
+                            <constraint firstItem="Yg8-7Q-cfD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="SZn-u8-2z1"/>
+                            <constraint firstItem="pn6-xz-CKF" firstAttribute="centerX" secondItem="LUS-gf-nYa" secondAttribute="centerX" id="T4e-jA-PbC"/>
+                            <constraint firstItem="pn6-xz-CKF" firstAttribute="bottom" secondItem="LUS-gf-nYa" secondAttribute="bottom" id="TR3-OD-WBC"/>
+                            <constraint firstItem="OUi-Ap-SIr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UFk-X7-Xv4"/>
+                            <constraint firstItem="st9-T5-Ef5" firstAttribute="leading" secondItem="LUS-gf-nYa" secondAttribute="leading" id="UIO-Gd-Ng3"/>
+                            <constraint firstItem="st9-T5-Ef5" firstAttribute="top" secondItem="LUS-gf-nYa" secondAttribute="top" id="Xjp-kR-1Xg"/>
+                            <constraint firstItem="pn6-xz-CKF" firstAttribute="trailing" secondItem="LUS-gf-nYa" secondAttribute="trailing" id="cty-7m-ylf"/>
+                            <constraint firstItem="OUi-Ap-SIr" firstAttribute="top" secondItem="LUS-gf-nYa" secondAttribute="bottom" constant="211" id="fNC-As-HgN"/>
+                            <constraint firstItem="LUS-gf-nYa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="mZE-Vr-qP9"/>
+                            <constraint firstItem="pn6-xz-CKF" firstAttribute="leading" secondItem="LUS-gf-nYa" secondAttribute="leading" id="nYA-Zb-6ic"/>
+                            <constraint firstItem="st9-T5-Ef5" firstAttribute="trailing" secondItem="LUS-gf-nYa" secondAttribute="trailing" id="ne2-OA-p97"/>
+                            <constraint firstItem="Yg8-7Q-cfD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oTn-v1-l8T"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomTextField" destination="pn6-xz-CKF" id="ugY-Sg-ndm"/>
+                        <outlet property="cameraButton" destination="VBE-Ts-VY5" id="629-pV-sBw"/>
+                        <outlet property="imagePickerView" destination="LUS-gf-nYa" id="aJx-Sn-QH3"/>
+                        <outlet property="shareButton" destination="Yg8-7Q-cfD" id="JKF-Sg-v2V"/>
+                        <outlet property="toolbar" destination="OUi-Ap-SIr" id="Jof-yc-TTS"/>
+                        <outlet property="topTextField" destination="st9-T5-Ef5" id="Fxv-qE-dEO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="13.043478260869566" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
