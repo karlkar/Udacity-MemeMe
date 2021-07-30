@@ -46,23 +46,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yg8-7Q-cfD">
-                                <rect key="frame" x="10" y="44" width="19" height="22"/>
-                                <state key="normal" image="square.and.arrow.up" catalog="system"/>
-                                <connections>
-                                    <action selector="shareButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eQ8-DI-R0e"/>
-                                </connections>
-                            </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynW-t3-yON">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Meme Meme" id="Xyr-ZL-Z8a">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="2HH-nf-f7k" userLabel="ShareButton">
+                                            <connections>
+                                                <action selector="shareButton:" destination="BYZ-38-t0r" id="Khx-Wt-fsJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ynW-t3-yON" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="0tC-It-8uH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LUS-gf-nYa" secondAttribute="trailing" constant="10" id="7Vf-PA-PxZ"/>
                             <constraint firstItem="LUS-gf-nYa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="9Wt-8r-Xgr"/>
                             <constraint firstItem="OUi-Ap-SIr" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Btq-hI-kIJ"/>
                             <constraint firstItem="st9-T5-Ef5" firstAttribute="centerX" secondItem="LUS-gf-nYa" secondAttribute="centerX" id="E49-kM-EJf"/>
                             <constraint firstItem="OUi-Ap-SIr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Jug-zn-pxx"/>
-                            <constraint firstItem="Yg8-7Q-cfD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="SZn-u8-2z1"/>
+                            <constraint firstItem="ynW-t3-yON" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SSv-Pi-WFy"/>
                             <constraint firstItem="pn6-xz-CKF" firstAttribute="centerX" secondItem="LUS-gf-nYa" secondAttribute="centerX" id="T4e-jA-PbC"/>
                             <constraint firstItem="pn6-xz-CKF" firstAttribute="bottom" secondItem="LUS-gf-nYa" secondAttribute="bottom" id="TR3-OD-WBC"/>
                             <constraint firstItem="OUi-Ap-SIr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UFk-X7-Xv4"/>
@@ -70,17 +76,18 @@
                             <constraint firstItem="st9-T5-Ef5" firstAttribute="top" secondItem="LUS-gf-nYa" secondAttribute="top" id="Xjp-kR-1Xg"/>
                             <constraint firstItem="pn6-xz-CKF" firstAttribute="trailing" secondItem="LUS-gf-nYa" secondAttribute="trailing" id="cty-7m-ylf"/>
                             <constraint firstItem="OUi-Ap-SIr" firstAttribute="top" secondItem="LUS-gf-nYa" secondAttribute="bottom" constant="211" id="fNC-As-HgN"/>
+                            <constraint firstItem="ynW-t3-yON" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mAb-Wv-Gob"/>
                             <constraint firstItem="LUS-gf-nYa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="mZE-Vr-qP9"/>
                             <constraint firstItem="pn6-xz-CKF" firstAttribute="leading" secondItem="LUS-gf-nYa" secondAttribute="leading" id="nYA-Zb-6ic"/>
                             <constraint firstItem="st9-T5-Ef5" firstAttribute="trailing" secondItem="LUS-gf-nYa" secondAttribute="trailing" id="ne2-OA-p97"/>
-                            <constraint firstItem="Yg8-7Q-cfD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oTn-v1-l8T"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="pn6-xz-CKF" id="ugY-Sg-ndm"/>
                         <outlet property="cameraButton" destination="VBE-Ts-VY5" id="629-pV-sBw"/>
                         <outlet property="imagePickerView" destination="LUS-gf-nYa" id="aJx-Sn-QH3"/>
-                        <outlet property="shareButton" destination="Yg8-7Q-cfD" id="JKF-Sg-v2V"/>
+                        <outlet property="navigationBar" destination="ynW-t3-yON" id="Sqi-Gr-YBm"/>
+                        <outlet property="shareBtn" destination="2HH-nf-f7k" id="yEf-gW-gvh"/>
                         <outlet property="toolbar" destination="OUi-Ap-SIr" id="Jof-yc-TTS"/>
                         <outlet property="topTextField" destination="st9-T5-Ef5" id="Fxv-qE-dEO"/>
                     </connections>
@@ -91,7 +98,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

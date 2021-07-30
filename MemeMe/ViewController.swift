@@ -14,7 +14,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var shareBtn: UIBarButtonItem!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     private static let BOTTOM = "BOTTOM"
     private static let TOP = "TOP"
@@ -31,7 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        shareButton.isEnabled = false
+        shareBtn.isEnabled = false
         // Do any additional setup after loading the view.
     }
     
@@ -58,29 +59,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func pickAnImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        chooseImageFromCameraOrPhoto(.photoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        chooseImageFromCameraOrPhoto(.camera)
+    }
+    
+    private func chooseImageFromCameraOrPhoto(_ source: UIImagePickerController.SourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        pickerController.sourceType = source
+        present(pickerController, animated: true, completion: nil)
     }
     
     @IBAction func shareButton(_ sender: Any) {
-        let meme = save()
-        let avc = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: [])
+        let meme = generateMemedImage()
+        let avc = UIActivityViewController(activityItems: [meme], applicationActivities: [])
+        avc.completionWithItemsHandler = { activity, completed, items, error in
+                    if completed {
+                        self.save()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
         present(avc, animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imagePickerView.image = image
-            shareButton.isEnabled = true
+            shareBtn.isEnabled = true
         }
         dismiss(animated: true, completion: nil)
     }
@@ -100,7 +109,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if (bottomTextField.isFirstResponder) {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
@@ -136,7 +147,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     private func toggleNoiseVisibility(visible: Bool) {
         toolbar.isHidden = !visible
-        shareButton.isHidden = !visible
+        navigationBar.isHidden = !visible
     }
 }
 
