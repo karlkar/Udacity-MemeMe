@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeCreateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -30,6 +30,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let topTextFieldDelegate = TextFieldDelegate(initialText: TOP)
     let bottomTextFieldDelegate = TextFieldDelegate(initialText: BOTTOM)
     
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         shareBtn.isEnabled = false
@@ -40,8 +42,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
-        setupTextField(topTextField, ViewController.TOP, topTextFieldDelegate)
-        setupTextField(bottomTextField, ViewController.BOTTOM, bottomTextFieldDelegate)
+        setupTextField(topTextField, MemeCreateViewController.TOP, topTextFieldDelegate)
+        setupTextField(bottomTextField, MemeCreateViewController.BOTTOM, bottomTextFieldDelegate)
         
         subscribeToKeyboardNotifications()
     }
@@ -79,11 +81,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let avc = UIActivityViewController(activityItems: [meme], applicationActivities: [])
         avc.completionWithItemsHandler = { activity, completed, items, error in
                     if completed {
-                        self.save()
-                        self.dismiss(animated: true, completion: nil)
+                        self.appDelegate.memes.append(self.save())
+                        self.navigationController!.popViewController(animated: true)
                     }
                 }
         present(avc, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        self.navigationController!.popViewController(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -132,7 +138,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func generateMemedImage() -> UIImage {
-        toggleNoiseVisibility(visible: false)
+        toolbar.isHidden = true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -140,14 +146,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        toggleNoiseVisibility(visible: true)
+        toolbar.isHidden = false
 
         return memedImage
-    }
-    
-    private func toggleNoiseVisibility(visible: Bool) {
-        toolbar.isHidden = !visible
-        navigationBar.isHidden = !visible
     }
 }
 
